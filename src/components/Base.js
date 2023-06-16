@@ -16,9 +16,19 @@ export const containerVariants = {
       delay: 0.5,
     },
   },
+  exit: { x: "-100vw", transition: { ease: "easeInOut" } },
 };
 
 const nextVariants = {
+  hover: {
+    scale: 1.05,
+    textShadow: "0px 0px 8px rgb(255,255,255)",
+    boxShadow: "0px 0px 8px rgb(255,255,255)",
+    transition: {
+      duration: 0.3,
+      yoyo: Infinity,
+    },
+  },
   left: {
     x: "-100vw",
   },
@@ -36,6 +46,7 @@ const Base = ({ addBase, pizza }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
       className="base container"
     >
       <h3>Step 1: Choose Your Base</h3>
@@ -62,13 +73,7 @@ const Base = ({ addBase, pizza }) => {
           className="next"
         >
           <Link to="/toppings">
-            <motion.button
-              whileHover={{
-                scale: 1.1,
-                textShadow: "0px 0px 8px rgb(255,255,255)",
-                boxShadow: "0px 0px 8px rgb(255,255,255)",
-              }}
-            >
+            <motion.button variants={nextVariants} whileHover="hover">
               Next
             </motion.button>
           </Link>
